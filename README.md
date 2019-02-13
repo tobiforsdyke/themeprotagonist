@@ -2,7 +2,7 @@
 
 Premium Wordpress Theme development.
 
-## Uses SASS so to remember:
+## Dev uses SASS so remember:
 
 **Before starting open Terminal and navigate to the themes folder then type:**
 
