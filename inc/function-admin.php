@@ -20,6 +20,7 @@ add_action( 'admin_menu', 'protagonist_add_admin_page' );
 
 function protagonist_custom_settings() {
   // Registers settings in the database
+  register_setting( 'protagonist-settings-group', 'profile_pic' );
   register_setting( 'protagonist-settings-group', 'first_name' );
   register_setting( 'protagonist-settings-group', 'last_name' );
   register_setting( 'protagonist-settings-group', 'user_description' );
@@ -29,6 +30,7 @@ function protagonist_custom_settings() {
   // Creates the form section
   add_settings_section( 'protagonist-sidebar-options', 'Sidebar Options', 'protagonist_sidebar_options', 'protagonist_adminpage' );
   // Creates the fields (rows)
+  add_settings_field( 'sidebar-profile-pic', 'Profile Picture', 'protagonist_sidebar_profile', 'protagonist_adminpage', 'protagonist-sidebar-options' );
   add_settings_field( 'sidebar-name', 'Name', 'protagonist_sidebar_name', 'protagonist_adminpage', 'protagonist-sidebar-options' );
   add_settings_field( 'sidebar-description', 'Description', 'protagonist_sidebar_description', 'protagonist_adminpage', 'protagonist-sidebar-options' );
   add_settings_field( 'sidebar-twitter', 'Twitter', 'protagonist_sidebar_twitter', 'protagonist_adminpage', 'protagonist-sidebar-options' );
@@ -42,6 +44,11 @@ function protagonist_sidebar_options() {
 }
 
 // Calling the form fields
+
+function protagonist_sidebar_profile() {
+  $profilePic = esc_attr( get_option( 'profile_pic' ) );
+  echo '<input type="button" class="button button-secondary" value="Upload Profile Picture" id="upload-button"><input type="hidden" id="profile-pic" name="profile_pic" value="'.$profilePic.'" /><p class="description">Upload an image to use as your profile picture.</p>';
+}
 
 function protagonist_sidebar_name() {
   $firstName = esc_attr( get_option( 'first_name' ) );
