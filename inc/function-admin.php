@@ -10,8 +10,9 @@ function protagonist_add_admin_page() {
   // Generate the Protagonist Admin Page
   add_menu_page( 'Protagonist Options', 'Protagonist', 'manage_options', 'protagonist_adminpage', 'protagonist_theme_create_page', get_template_directory_uri() . '/img/protagonist-icon.png', 76 );
   // Generate the admin sub pages
-  add_submenu_page( 'protagonist_adminpage', 'Protagonist Options', 'General', 'manage_options', 'protagonist_adminpage', 'protagonist_theme_create_page' );
+  add_submenu_page( 'protagonist_adminpage', 'Protagonist Sidebar Options', 'Sidebar', 'manage_options', 'protagonist_adminpage', 'protagonist_theme_create_page' );
   add_submenu_page( 'protagonist_adminpage', 'Protagonist Colour Themes', 'Colour Themes', 'manage_options', 'protagonist_adminpage_colourthemes', 'protagonist_theme_colour_settings_page' );
+  add_submenu_page( 'protagonist_adminpage', 'Protagonist Theme Options', 'Theme Options', 'manage_options', 'protagonist_adminpage_options', 'protagonist_theme_support_page' );
   add_submenu_page( 'protagonist_adminpage', 'Protagonist CSS Options', 'Custom CSS', 'manage_options', 'protagonist_adminpage_css', 'protagonist_theme_css_settings_page' );
   // Activate custom settings
   add_action( 'admin_init', 'protagonist_custom_settings' );
@@ -19,7 +20,8 @@ function protagonist_add_admin_page() {
 add_action( 'admin_menu', 'protagonist_add_admin_page' );
 
 function protagonist_custom_settings() {
-  // Registers settings in the database
+  // **Registers settings in the database**
+  // Sidebar Options
   register_setting( 'protagonist-settings-group', 'profile_pic' );
   register_setting( 'protagonist-settings-group', 'first_name' );
   register_setting( 'protagonist-settings-group', 'last_name' );
@@ -37,19 +39,24 @@ function protagonist_custom_settings() {
   add_settings_field( 'sidebar-facebook', 'Facebook', 'protagonist_sidebar_facebook', 'protagonist_adminpage', 'protagonist-sidebar-options' );
   add_settings_field( 'sidebar-instagram', 'Instagram', 'protagonist_sidebar_instagram', 'protagonist_adminpage', 'protagonist-sidebar-options' );
   // add_settings_field( 'sidebar-socials', 'Social Media', 'protagonist_sidebar_socials', 'protagonist_adminpage', 'protagonist-sidebar-options' );
+
+  // Theme Support Options
+  register_setting( 'protagonist-theme-support', 'post_formats', 'protagonist_post_formats_callback' );
+  // Theme support form section
+  add_settings_section( 'protagonist-theme-support-options', 'Theme Options', 'protagonist_theme_options', 'protagonist_theme_support_page' );
+  // Create the fields (rows)
+  add_settings_field( 'post-formats', 'Post Formats', 'protagonist_post_formats', 'protagonist_theme_support_page', 'protagonist-theme-support-options' );
 }
 
+// Sidebar Options Functions
 function protagonist_sidebar_options() {
   echo 'Customise your sidebar information.';
 }
-
 // Calling the form fields
-
 function protagonist_sidebar_profile() {
   $profilePic = esc_attr( get_option( 'profile_pic' ) );
   echo '<input type="button" class="button button-secondary" value="Upload Profile Picture" id="upload-button"><input type="hidden" id="profile-pic" name="profile_pic" value="'.$profilePic.'" /><p class="description">Upload an image to use as your profile picture.</p>';
 }
-
 function protagonist_sidebar_name() {
   $firstName = esc_attr( get_option( 'first_name' ) );
   $lastName = esc_attr( get_option( 'last_name' ) );
@@ -87,6 +94,24 @@ function protagonist_clean_twitter( $input ) {
   return $output;
 }
 
+// Post formats callback function
+function protagonist_post_formats_callback( $input ) {
+  return $input;
+}
+function protagonist_theme_options() {
+  echo 'Activate theme supports';
+}
+function protagonist_post_formats() {
+  $options = ( get_option( 'post_formats' ) );
+  $formats = array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' );
+  $output = '';
+  foreach ( $formats as $format ){
+    $checked = ( @$options[$format] == 1 ? 'checked' : '' );
+    $output .= '<label><input type="checkbox" id="'.$format.'" name="post_formats['.$format.']" value="1" '.$checked.'> '.$format.'</label><br>';
+  }
+  echo $output;
+}
+
 function protagonist_theme_create_page() {
   // Generation of the admin oage
   require_once( get_template_directory() . '/inc/templates/protagonist-admin.php' );
@@ -100,4 +125,9 @@ function protagonist_theme_colour_settings_page() {
 function protagonist_theme_css_settings_page() {
   // Generation of CSS settings page
   require_once( get_template_directory() . '/inc/templates/protagonist-custom-css.php' );
+}
+
+function protagonist_theme_support_page() {
+  // Generation of Theme Support settings page
+  require_once( get_template_directory() . '/inc/templates/protagonist-theme-support.php' );
 }

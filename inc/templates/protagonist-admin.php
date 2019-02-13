@@ -1,4 +1,4 @@
-<h1>Protagonist Theme Options</h1>
+<h1>Protagonist Sidebar Options</h1>
 <?php settings_errors(); ?>
 
 <form action="options.php" method="post" class="protagonist-settings-form">
