@@ -4,7 +4,7 @@
 <form action="options.php" method="post" class="protagonist-settings-form">
   <?php settings_fields( 'protagonist-settings-group' ); ?>
   <?php do_settings_sections( 'protagonist_adminpage' ); ?>
-  <?php submit_button(); ?>
+  <?php submit_button( 'Save Changes', 'primary', 'btnSubmit' ); ?>
 </form>
 
 <?php

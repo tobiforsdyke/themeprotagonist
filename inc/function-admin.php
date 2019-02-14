@@ -55,7 +55,11 @@ function protagonist_sidebar_options() {
 // Calling the form fields
 function protagonist_sidebar_profile() {
   $profilePic = esc_attr( get_option( 'profile_pic' ) );
-  echo '<input type="button" class="button button-secondary" value="Upload Profile Picture" id="upload-button"><input type="hidden" id="profile-pic" name="profile_pic" value="'.$profilePic.'" /><p class="description">Upload an image to use as your profile picture.</p>';
+  if( empty($profilePic) ){
+    echo '<input type="button" class="button button-secondary" value="Upload Profile Picture" id="upload-button"><input type="hidden" id="profile-pic" name="profile_pic" value="" /><p class="description">Upload an image to use as your profile picture.</p>';
+  } else {
+    echo '<input type="button" class="button button-secondary" value="Replace Profile Picture" id="upload-button"><input type="hidden" id="profile-pic" name="profile_pic" value="'.$profilePic.'" /> <input type="button" class="button button-secondary" value="Remove" id="remove-picture"><p class="description">Upload an image to use as your profile picture.</p>';
+  }
 }
 function protagonist_sidebar_name() {
   $firstName = esc_attr( get_option( 'first_name' ) );
