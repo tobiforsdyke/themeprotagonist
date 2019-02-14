@@ -41,11 +41,15 @@ function protagonist_custom_settings() {
   // add_settings_field( 'sidebar-socials', 'Social Media', 'protagonist_sidebar_socials', 'protagonist_adminpage', 'protagonist-sidebar-options' );
 
   // Theme Support Options
-  register_setting( 'protagonist-theme-support', 'post_formats', 'protagonist_post_formats_callback' );
+  register_setting( 'protagonist-theme-support', 'post_formats' );
+  register_setting( 'protagonist-theme-support', 'custom_header' );
+  register_setting( 'protagonist-theme-support', 'custom_background' );
   // Theme support form section
   add_settings_section( 'protagonist-theme-support-options', 'Theme Options', 'protagonist_theme_options', 'protagonist_theme_support_page' );
   // Create the fields (rows)
   add_settings_field( 'post-formats', 'Post Formats', 'protagonist_post_formats', 'protagonist_theme_support_page', 'protagonist-theme-support-options' );
+  add_settings_field( 'custom-header', 'Custom Header', 'protagonist_custom_header', 'protagonist_theme_support_page', 'protagonist-theme-support-options' );
+  add_settings_field( 'custom-background', 'Custom Background', 'protagonist_custom_background', 'protagonist_theme_support_page', 'protagonist-theme-support-options' );
 }
 
 // Sidebar Options Functions
@@ -98,10 +102,6 @@ function protagonist_clean_twitter( $input ) {
   return $output;
 }
 
-// Post formats callback function
-function protagonist_post_formats_callback( $input ) {
-  return $input;
-}
 function protagonist_theme_options() {
   echo 'Activate theme supports';
 }
@@ -114,6 +114,17 @@ function protagonist_post_formats() {
     $output .= '<label><input type="checkbox" id="'.$format.'" name="post_formats['.$format.']" value="1" '.$checked.'> '.$format.'</label><br>';
   }
   echo $output;
+}
+
+function protagonist_custom_header() {
+  $options = get_option( 'custom_header' );
+  $checked = ( @$options == 1 ? 'checked' : '' );
+  echo '<label><input type="checkbox" id="custom_header" name="custom_header" value="1" '.$checked.'> Activate the Custom Header</label>';
+}
+function protagonist_custom_background() {
+  $options = get_option( 'custom_background' );
+  $checked = ( @$options == 1 ? 'checked' : '' );
+  echo '<label><input type="checkbox" id="custom_background" name="custom_background" value="1" '.$checked.'> Activate the Custom Background</label>';
 }
 
 function protagonist_theme_create_page() {
