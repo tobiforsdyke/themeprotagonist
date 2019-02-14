@@ -13,6 +13,7 @@ function protagonist_add_admin_page() {
   add_submenu_page( 'protagonist_adminpage', 'Protagonist Sidebar Options', 'Sidebar', 'manage_options', 'protagonist_adminpage', 'protagonist_theme_create_page' );
   add_submenu_page( 'protagonist_adminpage', 'Protagonist Colour Themes', 'Colour Themes', 'manage_options', 'protagonist_adminpage_colourthemes', 'protagonist_theme_colour_settings_page' );
   add_submenu_page( 'protagonist_adminpage', 'Protagonist Theme Options', 'Theme Options', 'manage_options', 'protagonist_adminpage_options', 'protagonist_theme_support_page' );
+  add_submenu_page( 'protagonist_adminpage', 'Protagonist Contact Form', 'Contact Form', 'manage_options', 'protagonist_adminpage_contact', 'protagonist_contactform_page' );
   add_submenu_page( 'protagonist_adminpage', 'Protagonist CSS Options', 'Custom CSS', 'manage_options', 'protagonist_adminpage_css', 'protagonist_theme_css_settings_page' );
   // Activate custom settings
   add_action( 'admin_init', 'protagonist_custom_settings' );
@@ -50,6 +51,24 @@ function protagonist_custom_settings() {
   add_settings_field( 'post-formats', 'Post Formats', 'protagonist_post_formats', 'protagonist_theme_support_page', 'protagonist-theme-support-options' );
   add_settings_field( 'custom-header', 'Custom Header', 'protagonist_custom_header', 'protagonist_theme_support_page', 'protagonist-theme-support-options' );
   add_settings_field( 'custom-background', 'Custom Background', 'protagonist_custom_background', 'protagonist_theme_support_page', 'protagonist-theme-support-options' );
+
+  // Contact Form Options
+  register_setting( 'protagonist-contact-options', 'activate_contact' );
+  add_settings_section( 'protagonist-contact-section', 'Contact Form', 'protagonist_contact_section', 'protagonist_contactform_page' );
+  add_settings_field( 'activate-form', 'Activate Contact Form', 'protagonist_activate_contact', 'protagonist_contactform_page', 'protagonist-contact-section' );
+}
+
+// Contact Form
+function protagonist_contactform_page() {
+  require_once( get_template_directory() . '/inc/templates/protagonist-contact-form.php' );
+}
+function protagonist_contact_section() {
+  echo 'Activate and deactivate the built-in contact form.';
+}
+function protagonist_activate_contact() {
+  $options = get_option( 'activate_contact' );
+  $checked = ( @$options == 1 ? 'checked' : '' );
+  echo '<label><input type="checkbox" id="activate_contact" name="activate_contact" value="1" '.$checked.'> Activate the Contact Form</label>';
 }
 
 // Sidebar Options Functions
