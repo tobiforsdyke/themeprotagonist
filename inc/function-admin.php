@@ -56,6 +56,21 @@ function protagonist_custom_settings() {
   register_setting( 'protagonist-contact-options', 'activate_contact' );
   add_settings_section( 'protagonist-contact-section', 'Contact Form', 'protagonist_contact_section', 'protagonist_contactform_page' );
   add_settings_field( 'activate-form', 'Activate Contact Form', 'protagonist_activate_contact', 'protagonist_contactform_page', 'protagonist-contact-section' );
+
+  // Custom CSS Options
+  register_setting( 'protagonist-custom-css-options', 'protagonist_css', 'protagonist_clean_custom_css' );
+  add_settings_section( 'protagonist-custom-css-section', 'Custom CSS', 'protagonist_custom_css_section_callback', 'protagonist_theme_css_settings_page' );
+  add_settings_field( 'custom-css', 'Insert your custom CSS', 'protagonist_custom_css_callback', 'protagonist_theme_css_settings_page', 'protagonist-custom-css-section' );
+}
+
+// Custom CSS
+function protagonist_custom_css_section_callback() {
+  echo 'Customise the Protagonist theme with your own CSS.';
+}
+function protagonist_custom_css_callback() {
+  $css = get_option( 'protagonist_css' );
+  $css = ( empty($css) ? '/* Protagonist Theme Custom CSS */' : $css );
+  echo '<div id="customCss">'.$css.'</div><textarea id="protagonist_css" name="protagonist_css" style="display:none;visibility:hidden;">'.$css.'</textarea>';
 }
 
 // Contact Form
@@ -114,10 +129,15 @@ function protagonist_sidebar_instagram() {
 //   echo '<input type="text" name="twitter" value="'.$twitterName.'" placeholder="Twitter" /><br /><input type="text" name="facebook" value="'.$facebookName.'" placeholder="Facebook" /><br /><input type="text" name="instagram" value="'.$instagramName.'" placeholder="Instagram" />';
 // }
 
-// Function to sanitise (clean out) the @ symbol from twitter handle
+
+// Sanitisation Functions. Functions to sanitise (clean out) the @ symbol from twitter handle and CSS text area
 function protagonist_clean_twitter( $input ) {
   $output = sanitize_text_field( $input );
   $output = str_replace( '@', '', $output );
+  return $output;
+}
+function protagonist_clean_custom_css( $input ) {
+  $output = esc_textarea( $input );
   return $output;
 }
 
