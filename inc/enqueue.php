@@ -28,3 +28,19 @@ function protagonist_load_admin_scripts( $checkPage ) {
   } else { return; }
 }
 add_action( 'admin_enqueue_scripts', 'protagonist_load_admin_scripts' );
+
+// ===========================
+// FRONT-END ENQUEUES
+// ===========================
+
+function protagonist_load_scripts(){
+  // CSS
+  wp_enqueue_style( 'bootstrapcss', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '4.3.1', 'all' );
+  wp_enqueue_style( 'protagonistcss', get_template_directory_uri() . '/css/protagonist.css', array(), '1.0.0', 'all' );
+  // JS
+  wp_deregister_script( 'jquery' );
+  wp_register_script( 'jquery', get_template_directory_uri() . 'js/jquery.js', false, '3.3.1', true );
+  wp_enqueue_script( 'jquery' );
+  wp_enqueue_script( 'bootstrapjs', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '4.3.1', true );
+}
+add_action( 'wp_enqueue_scripts', 'protagonist_load_scripts' );
