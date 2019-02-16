@@ -27,6 +27,20 @@
     <h2 class="protagonist-description"><?php print $description; ?></h2>
     <div class="social-icons-wrapper">
 
+      <!-- <?php
+        if( !empty( $twitter ) ){
+          return;
+        } else {
+          print $twitter;
+        }
+
+        if( @$facebook == 1 ) {
+          print $facebook;
+        } else {
+          return;
+        }
+      ?> -->
+
     </div>
   </div>
 </div>
