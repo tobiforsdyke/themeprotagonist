@@ -17,3 +17,21 @@
 </head>
 
 <body <?php body_class(); ?>>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+
+        <div class="header-container background-image text-center" style="background-image: url(<?php header_image(); ?>);">
+          <div class="header-content table">
+            <div class="table-cell">
+              <h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
+              <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+            </div>
+          </div>
+          <div class="nav-container"></div>
+        </div><!-- .header-container -->
+
+      </div><!-- .col-12 -->
+    </div><!-- .row -->
+  </div><!-- .container-fluid -->
