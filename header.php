@@ -34,7 +34,7 @@
           </div>
 
           <div class="nav-container">
-            <nav class="navbar navbar-expand-md navbar-dark navbar-protagonist">
+            <nav class="navbar navbar-expand-md navbar-default navbar-protagonist justify-content-center">
               <?php
                 wp_nav_menu( array(
                   'theme_location' => 'primary',

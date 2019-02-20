@@ -2,14 +2,40 @@
 @package themeprotagonist
 */
 
+// (Inline comments do not show up in SASS compile)
+
+// ===========================
+// VARIABLES
+// ===========================
+
+$font-header: 'Coiny', cursive;
+$font-body: 'Open Sans', sans-serif;
+
+// ===========================
+// MIXINS
+// ===========================
+
+@mixin animate ( $attr, $time ) {
+  -webkit-transition: $attr $time ease;
+  -moz-transition: $attr $time ease;
+  -ms-transition: $attr $time ease;
+  -o-transition: $attr $time ease;
+  transition: $attr $time ease;
+}
+
+@mixin transform ( $val ) {
+  -webkit-transform: $val;
+  -moz-transform: $val;
+  -ms-transform: $val;
+  -o-transform: $val;
+  transform: $val;
+}
+
 /*
 ===========================
 GENERIC
 ===========================
 */
-
-$font-header: 'Coiny', cursive;
-$font-body: 'Open Sans', sans-serif;
 
 body {
   font-family: $font-body;
@@ -61,4 +87,51 @@ HEADER
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+/*
+===========================
+NAV BAR
+===========================
+*/
+.navbar-protagonist {
+  text-align: center;
+  border: none;
+  border-radius: 0;
+  min-height: auto;
+  margin-bottom: 0;
+  background-color: rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  ul { float: none; }
+  li {
+    float: none;
+    display: inline-block;
+    a {
+      text-transform: uppercase;
+      color: #fff;
+      font-size: 14px;
+      opacity: 0.7;
+      letter-spacing: 0.05em;
+      background: none;
+      @include animate( opacity, 320ms );
+        &:hover,
+        &:focus,
+        &:visited { background: none; opacity: 1;
+          &:after { @include transform( translateY(0) ); opacity: 1; }
+        }
+        &:after {
+          content: '';
+          position: inherit;
+          display: block;
+          left: 15px;
+          right: 15px;
+          bottom: 10px;
+          height: 2px;
+          background: #fff;
+          @include animate( all, 320ms );
+          opacity: 0;
+          @include transform( translateY(5px) );
+        }
+    }
+  }
 }
