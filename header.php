@@ -40,7 +40,8 @@
                   'theme_location' => 'primary',
                   'container' => false,
                   'menu_class' => 'nav navbar-nav',
-                  'link_class' => 'nav-link'
+                  'link_class' => 'nav-link',
+                  'walker' => new Protagonist_Walker_Nav_Primary()
                 ) );
               ?>
             </nav>

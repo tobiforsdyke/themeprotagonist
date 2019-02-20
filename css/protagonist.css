@@ -71,6 +71,35 @@ NAV BAR
   .navbar-protagonist li {
     float: none;
     display: inline-block; }
+    .navbar-protagonist li.active a {
+      opacity: 1; }
+      .navbar-protagonist li.active a:after {
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1; }
+    .navbar-protagonist li.open a {
+      opacity: 1;
+      background-color: rgba(0, 0, 0, 0.1); }
+      .navbar-protagonist li.open a:after {
+        -webkit-transform: translateY(10px);
+        -moz-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+        -o-transform: translateY(10px);
+        transform: translateY(10px);
+        opacity: 0; }
+      .navbar-protagonist li.open a:hover, .navbar-protagonist li.open a:focus, .navbar-protagonist li.open a:visited {
+        background: none;
+        opacity: 1; }
+        .navbar-protagonist li.open a:hover:after, .navbar-protagonist li.open a:focus:after, .navbar-protagonist li.open a:visited:after {
+          -webkit-transform: translateY(0);
+          -moz-transform: translateY(0);
+          -ms-transform: translateY(0);
+          -o-transform: translateY(0);
+          transform: translateY(0);
+          opacity: 1; }
     .navbar-protagonist li a {
       text-transform: uppercase;
       color: #fff;

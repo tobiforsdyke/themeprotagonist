@@ -106,6 +106,24 @@ NAV BAR
   li {
     float: none;
     display: inline-block;
+    &.active {
+      a {
+        opacity: 1;
+        &:after { @include transform( translateY(0) ); opacity: 1; }
+      }
+    }
+    &.open {
+      a {
+        opacity: 1;
+        background-color: rgba(0,0,0,0.1);
+        &:after { @include transform( translateY(10px) ); opacity: 0; }
+          &:hover,
+          &:focus,
+          &:visited { background: none; opacity: 1;
+            &:after { @include transform( translateY(0) ); opacity: 1; }
+          }
+      }
+    }
     a {
       text-transform: uppercase;
       color: #fff;
