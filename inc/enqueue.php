@@ -43,5 +43,8 @@ function protagonist_load_scripts(){
   wp_register_script( 'jquery', get_template_directory_uri() . 'js/jquery.js', false, '3.3.1', true );
   wp_enqueue_script( 'jquery' );
   wp_enqueue_script( 'bootstrapjs', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '4.3.1', true );
+  // FONTAWESOME
+  wp_enqueue_style( 'fontawesomecss', get_template_directory_uri() . '/inc/fontawesome/css/all.min.css' );
+  wp_enqueue_script( 'fontawesomejs', get_template_directory_uri() . '/inc/fontawesome/js/all.min.js' );
 }
 add_action( 'wp_enqueue_scripts', 'protagonist_load_scripts' );
