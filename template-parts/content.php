@@ -30,6 +30,6 @@
   </div><!-- .entry-content -->
 
   <footer class="entry-footer">
-    <?php echo protagonist_posted_footer(); ?>
+    <?php echo protagonist_posted_footer(); ?><!-- This function is inside theme-support.php file -->
   </footer>
 </article>

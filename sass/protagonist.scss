@@ -21,9 +21,9 @@ body {
   font-family: $font-body;
 }
 
-a { @include animate( color, 320ms );
+a { color: $primary-color; @include animate( color, 320ms );
   &:hover,
-  &:focus { text-decoration: none; }
+  &:focus { text-decoration: none; color: $rollover-grey; }
 }
 
 .background-image { background-position: center center; background-size: cover; background-repeat: no-repeat; }
@@ -145,10 +145,13 @@ STANDARD POST FORMAT
 ===========================
 */
 
-h1 { font-size: 48px; font-family: $font-header; color: $primary-color;
-  a { color: $primary-color; }
+article {
+  margin-bottom: 80px;
+}
+
+h1 { font-size: 48px; font-family: $font-header;
   &.entry-title { line-height: 1.5em; margin: 40px 0 0; padding: 0;
-    &:before, &:after { content: "·"; }
+    &:before, &:after { content: "··"; }
     &:before { margin-right: 10px; }
     &:after { margin-left: 10px; }
   }
@@ -197,16 +200,21 @@ h1 { font-size: 48px; font-family: $font-header; color: $primary-color;
       font-size: 17px;
       line-height: 1.5em;
       font-weight: 300;
-
+      letter-spacing: 0.01em;
     }
 }
 
+.button-container {
+  margin-bottom: 30px;
+}
+
 .btn-protagonist {
+  @include animate( all, 320ms );
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 200;
   color: $light-grey;
-  padding: 6px 10px;
+  padding: 8px 12px;
   border-radius: 0;
   border: 1px solid $light-grey;
   background-color: transparent;
@@ -218,6 +226,18 @@ h1 { font-size: 48px; font-family: $font-header; color: $primary-color;
     }
 }
 
-// .entry-header {}
-// .entry-content {}
-// .entry-footer {}
+.entry-footer {
+  padding: 10px 5px;
+  border-bottom: 4px solid $verylight-grey;
+  color: $light-grey;
+  text-transform: uppercase;
+  font-size: 12px;
+  a {
+    color: $light-grey;
+    display: inline-block;
+    padding: 0 4px;
+    &:hover,
+    &:focus { color: $rollover-grey; }
+  }
+
+}

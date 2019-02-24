@@ -77,5 +77,5 @@ function protagonist_posted_footer() {
   } else {
     $comments = __('Comments are closed <i class="fas fa-comment-slash"></i>');
   }
-  return '<div class="post-footer-container"><div class="row"><div class="col-sm-6 mr-auto justify-content-start">' . get_the_tag_list( '<div class="tags-list"><i class="fas fa-tag"></i>', ' ', '</div>' ) . '</div><div class="col-sm-6 ml-auto justify-content-end">' . $comments . '</div></div></div>';
+  return '<div class="post-footer-container"><div class="row"><div class="col-sm-6 mr-auto text-left">' . get_the_tag_list( '<div class="tags-list"><i class="fas fa-tag"></i>', ' ', '</div>' ) . '</div><div class="col-sm-6 ml-auto text-right">' . $comments . '</div></div></div>';
 }

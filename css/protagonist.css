@@ -11,13 +11,15 @@ body {
   font-family: "Open Sans", sans-serif; }
 
 a {
+  color: #000;
   -webkit-transition: color 320ms ease;
   -moz-transition: color 320ms ease;
   -ms-transition: color 320ms ease;
   -o-transition: color 320ms ease;
   transition: color 320ms ease; }
   a:hover, a:focus {
-    text-decoration: none; }
+    text-decoration: none;
+    color: #333333; }
 
 .background-image {
   background-position: center center;
@@ -158,18 +160,18 @@ NAV BAR
 STANDARD POST FORMAT
 ===========================
 */
+article {
+  margin-bottom: 80px; }
+
 h1 {
   font-size: 48px;
-  font-family: "Coiny", cursive;
-  color: #000; }
-  h1 a {
-    color: #000; }
+  font-family: "Coiny", cursive; }
   h1.entry-title {
     line-height: 1.5em;
     margin: 40px 0 0;
     padding: 0; }
     h1.entry-title:before, h1.entry-title:after {
-      content: "·"; }
+      content: "··"; }
     h1.entry-title:before {
       margin-right: 10px; }
     h1.entry-title:after {
@@ -216,14 +218,23 @@ h1 {
   .entry-excerpt p {
     font-size: 17px;
     line-height: 1.5em;
-    font-weight: 300; }
+    font-weight: 300;
+    letter-spacing: 0.01em; }
+
+.button-container {
+  margin-bottom: 30px; }
 
 .btn-protagonist {
+  -webkit-transition: all 320ms ease;
+  -moz-transition: all 320ms ease;
+  -ms-transition: all 320ms ease;
+  -o-transition: all 320ms ease;
+  transition: all 320ms ease;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 200;
   color: #ababab;
-  padding: 6px 10px;
+  padding: 8px 12px;
   border-radius: 0;
   border: 1px solid #ababab;
   background-color: transparent; }
@@ -231,5 +242,18 @@ h1 {
     color: #fff;
     border-color: #898989;
     background-color: #898989; }
+
+.entry-footer {
+  padding: 10px 5px;
+  border-bottom: 4px solid #f1f1f1;
+  color: #ababab;
+  text-transform: uppercase;
+  font-size: 12px; }
+  .entry-footer a {
+    color: #ababab;
+    display: inline-block;
+    padding: 0 4px; }
+    .entry-footer a:hover, .entry-footer a:focus {
+      color: #333333; }
 
 /*# sourceMappingURL=protagonist.css.map */
