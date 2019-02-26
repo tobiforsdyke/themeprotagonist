@@ -7,6 +7,22 @@ Premium Wordpress Theme development.
 **Before starting open Terminal and navigate to the themes folder then type:**
 
 ```
+grunt
+```
+This will start the Grunt task which converts SASS to CSS and watches for changes.
+
+If the dependencies haven't been installed yet (on a new computer) then first need to type:
+
+```
+npm install
+```
+This will install the dependencies that are listed in the package.json file.
+
+## Another Sass conversion method
+
+**The below is another option for converting Sass using Ruby but apparently this is deprecated?**
+
+```
 sass --watch style:output
 ```
 
