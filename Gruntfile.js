@@ -51,7 +51,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
+  // REGISTRATION OF TASKS
+  // Typing 'grunt sass' starts the task below which just runs once the [sass] and [postcss] tasks and then stops
   grunt.registerTask('css', ['sass', 'postcss']);
+  // DEFAULT TASK - typing 'grunt' will start the [css] task above (which runs both [sass] and [postcss] tasks) and then [watch] for changes
   grunt.registerTask('default',['css', 'watch']);
 
 }
